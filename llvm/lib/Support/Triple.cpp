@@ -74,6 +74,7 @@ StringRef Triple::getArchTypeName(ArchType Kind) {
   case x86:            return "i386";
   case x86_64:         return "x86_64";
   case xcore:          return "xcore";
+  case zenith:         return "zenith";
   }
 
   llvm_unreachable("Invalid ArchType!");
@@ -711,6 +712,7 @@ static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   case Triple::thumbeb:
   case Triple::ve:
   case Triple::xcore:
+  case Triple::zenith:
     return Triple::ELF;
 
   case Triple::ppc64:
@@ -1265,6 +1267,7 @@ static unsigned getArchPointerBitWidth(llvm::Triple::ArchType Arch) {
   case llvm::Triple::wasm32:
   case llvm::Triple::x86:
   case llvm::Triple::xcore:
+  case llvm::Triple::zenith:
     return 32;
 
   case llvm::Triple::aarch64:
@@ -1348,6 +1351,7 @@ Triple Triple::get32BitArchVariant() const {
   case Triple::wasm32:
   case Triple::x86:
   case Triple::xcore:
+  case Triple::zenith:
     // Already 32-bit.
     break;
 
@@ -1373,6 +1377,7 @@ Triple Triple::get32BitArchVariant() const {
 Triple Triple::get64BitArchVariant() const {
   Triple T(*this);
   switch (getArch()) {
+    // No 64-bit architecture exists -- set to unknown
   case Triple::UnknownArch:
   case Triple::arc:
   case Triple::avr:
@@ -1386,6 +1391,7 @@ Triple Triple::get64BitArchVariant() const {
   case Triple::tce:
   case Triple::tcele:
   case Triple::xcore:
+  case Triple::zenith:
     T.setArch(UnknownArch);
     break;
 
