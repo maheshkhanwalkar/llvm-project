@@ -9,7 +9,8 @@ public:
 
   ZenithTargetMachine(const Target &T, const Triple& TT, StringRef CPU,
                       StringRef FS, const TargetOptions& Options,
-                      CodeGenOpt::Level OL);
+                      Optional<Reloc::Model> RM, Optional<CodeModel::Model> CM,
+                      CodeGenOpt::Level OL, bool JIT);
 
   ~ZenithTargetMachine() = default;
 };

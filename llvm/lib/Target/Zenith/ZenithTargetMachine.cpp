@@ -13,7 +13,8 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeZenithTarget()
 /* FIXME: need to specify a layout description... */
 ZenithTargetMachine::ZenithTargetMachine(const Target &T, const Triple& TT,
     StringRef CPU, StringRef FS, const TargetOptions& Options,
-    CodeGenOpt::Level OL)
+    Optional<Reloc::Model> RM, Optional<CodeModel::Model> CM,
+                                         CodeGenOpt::Level OL, bool JIT)
     : LLVMTargetMachine(T, "", TT, CPU, FS, Options, Reloc::Static,
                         CodeModel::Small, OL),
 

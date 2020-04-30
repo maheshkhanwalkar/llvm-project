@@ -18,5 +18,5 @@ add_llvm_target(ZenithCodeGen
 
 # add_subdirectory(AsmParser)
 # add_subdirectory(Disassembler)
-# add_subdirectory(MCTargetDesc)
+add_subdirectory(MCTargetDesc)
 add_subdirectory(TargetInfo)

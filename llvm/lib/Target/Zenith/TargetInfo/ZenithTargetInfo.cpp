@@ -9,6 +9,6 @@ Target& llvm::getZenithTarget()
 
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeZenithTargetInfo()
 {
-  RegisterTarget<Triple::zenith, false> X(getZenithTarget(), "Zenith",
+  RegisterTarget<Triple::zenith, false> X(getZenithTarget(), "zenith",
                                           "Zenith", "Zenith");
 }
