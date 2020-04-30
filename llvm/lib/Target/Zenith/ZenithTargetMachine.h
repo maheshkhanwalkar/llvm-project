@@ -7,11 +7,11 @@ class ZenithTargetMachine : public LLVMTargetMachine {
 public:
   const DataLayout Layout;
 
-  ZenithTargetMachine(const llvm::Target &t, StringRef dataLayoutString,
-                      const llvm::Triple &tt, StringRef cpu, StringRef fs,
-                      const llvm::TargetOptions &options, Reloc::Model rm,
-                      CodeModel::Model cm, CodeGenOpt::Level ol,
-                      const Module &M, const std::string &FS);
+  ZenithTargetMachine(const Target &T, const Triple& TT, StringRef CPU,
+                      StringRef FS, const TargetOptions& Options,
+                      CodeGenOpt::Level OL);
+
+  ~ZenithTargetMachine() = default;
 };
 
 } // end namespace llvm

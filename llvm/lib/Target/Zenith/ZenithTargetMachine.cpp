@@ -1,15 +1,20 @@
 #include "ZenithTargetMachine.h"
+#include "llvm/Support/TargetRegistry.h"
+#include "TargetInfo/ZenithTargetInfo.h"
 
 using namespace llvm;
 
-ZenithTargetMachine::ZenithTargetMachine(
-    const Target &T, StringRef DataLayoutString, const Triple &Tt,
-    StringRef Cpu, StringRef Fs, const TargetOptions& Options,
-    Reloc::Model Rm, CodeModel::Model Cm, CodeGenOpt::Level Ol, const Module &M,
-    const std::string &FS)
-    : LLVMTargetMachine(T, DataLayoutString, Tt, Cpu, Fs, Options, Rm, Cm, Ol),
-      Layout(DataLayout(""))
-
+extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeZenithTarget()
 {
-
+  // Register the target
+  RegisterTargetMachine<ZenithTargetMachine> X(getZenithTarget());
 }
+
+/* FIXME: need to specify a layout description... */
+ZenithTargetMachine::ZenithTargetMachine(const Target &T, const Triple& TT,
+    StringRef CPU, StringRef FS, const TargetOptions& Options,
+    CodeGenOpt::Level OL)
+    : LLVMTargetMachine(T, "", TT, CPU, FS, Options, Reloc::Static,
+                        CodeModel::Small, OL),
+
+      Layout("") { }

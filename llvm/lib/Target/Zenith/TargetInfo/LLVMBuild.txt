@@ -9,15 +9,8 @@
 ;===------------------------------------------------------------------------===;
 
 [component_0]
-type = TargetGroup
-name = Zenith
-parent = Target
-
-
-[component_1]
 type = Library
-name = ZenithCodeGen
+name = ZenithInfo
 parent = Zenith
-required_libraries = AsmPrinter CodeGen Core MC SelectionDAG
-                     Support Target
+required_libraries = Support
 add_to_library_groups = Zenith
